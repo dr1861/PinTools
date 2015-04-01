@@ -41,7 +41,7 @@
 //
 
 #include "pin.H"
-#include "z3++.h"
+#include <z3++.h>
 #include <asm/unistd.h>
 #include <cstring>
 #include <fstream>
@@ -615,6 +615,8 @@ VOID movRegReg(REG reg0, REG reg1, CONTEXT *ctx)
 
 VOID Instruction(INS ins, VOID *v)
 {
+  if (INS_Opcode(ins) == XED_ICLASS_NOP)
+  	return;
   if (INS_OperandCount(ins) > 1 && INS_MemoryOperandIsRead(ins, 0) && INS_OperandIsReg(ins, 0)){
     INS_InsertCall(
         ins, IPOINT_BEFORE, (AFUNPTR)ReadMem,

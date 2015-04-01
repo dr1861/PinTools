@@ -50,7 +50,7 @@ OBJECT_ROOTS :=
 DLL_ROOTS :=
 
 # This defines any static libraries (archives), that need to be built.
-LIB_ROOTS := z3/build/libz3.so
+LIB_ROOTS :=
 
 
 ##############################################################

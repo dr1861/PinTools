@@ -1,0 +1,32 @@
+#!/bin/bash
+#==================================================
+#	File:	runtet.sh
+#	Author:	Donald Raikes <don.raikes@nyu.edu>
+#	Date:	04/01/2015
+#
+#	This script runs the ConcolicExecution tool 10 times on the crackme1 program 
+#	to get the entire password.
+#	
+#	Each iteration gives the time taken for the pin process to run.
+#
+#--------------------------------------------------------
+#	moved execution of actual pintool into a separate script so the timing of the pin test can be recorded.
+#		requires ./pintest
+#==================================================
+echo "*----------------------------------------------*"
+echo "*  Cleaning up files..."
+startdate=`date +%m/%d/%Y-%H:%M:%S`
+echo "*  Starting test: $startdate"
+rm -fr serial.txt test.log
+for i in {1..10}
+do
+	echo "*----------------------------------------------*"
+	echo "*  Iteration #$i"
+	time ./pintest 
+	taint=`cat serial.txt`
+	echo "*  Taint results = ($taint)"
+done
+echo "*----------------------------------------------*"
+enddate=`date +%m/%d/%Y-%H:%M:%S`
+echo "*  ending test: $enddate"
+echo "*----------------------------------------------*"

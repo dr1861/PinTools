@@ -1,0 +1,2 @@
+#!/bin/bash
+../../../pin.sh -t obj-intel64/ConcolicExecution.so -taint-file serial.txt  -- crackme1 >> test.log 2>&1
